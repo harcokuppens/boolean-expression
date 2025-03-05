@@ -1,0 +1,42 @@
+{
+  "name": "@harcokuppens/boolean-expression",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "match a string using a boolean expression of words",
+  "keywords": [
+    "boolean",
+    "expression",
+    "match",
+    "words"
+  ],
+  "author": "Harco Kuppens",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harcokuppens/highlight-words"
+  },
+  "main": "src/BooleanExpression.ts",
+  "types": "types/BooleanExpression.d.ts",
+  "files": [
+    "dist",
+    "types",
+    "src"
+  ],
+  "scripts": {
+    "dev": "./generate.bash && vite",
+    "build": "./generate.bash && tsc && vite build",
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build",
+    "clean": "rm -rf src/generated/ dist/ types/ ",
+    "cleanall": "rm -rf src/generated/ dist/ types/ node_modules/",
+    "test": "./generate.bash && vite-node src/main.ts"
+  },
+  "dependencies": {
+    "antlr4": "^4.13.2"
+  },
+  "devDependencies": {
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0",
+    "vite-node": "^3.0.7"
+  }
+}
