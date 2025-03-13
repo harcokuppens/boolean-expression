@@ -1,5 +1,5 @@
 
-import BooleanExpression from './BooleanExpression.js';
+import BooleanExpression from '../src/BooleanExpression.js';
 
 export function main() {
     const booleanExpr = "(kuppens AND vaAn) or aarts";
