@@ -4,8 +4,9 @@ import BooleanExpression from '../src/BooleanExpression.js';
 //import BooleanExpression from '../dist/BooleanExpression.js';
 
 export function main() {
-    const booleanExpr = "(kuppens AND vaAn) or aarts";
-    const line = "paper by vaandrager adn harco kuppens ";
+
+    const line = "paper by makeup adn john fakename ";
+    const booleanExpr = "(fakename AND aKeup) or someone";
 
     //const tree = getParserTree(simpleBooleanExpr);
     const boolexpr = new BooleanExpression(booleanExpr);
@@ -23,7 +24,7 @@ export function main() {
     const wordsused = boolexpr.getWordsUsedInLastMatch();
     console.log("getWordsUsedInLastMatch: " + wordsused.toString());
 
-    foundMatch = boolexpr.match("paper by harco kuppens and aarts")
+    foundMatch = boolexpr.match("paper by john fakename and someone")
     console.log("foundMatch: " + foundMatch.toString());
 
     foundMatch = BooleanExpression.match("hallo or boe", "boek");
