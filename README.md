@@ -29,7 +29,7 @@
 
 ## Description
 
-This library provides a `BooleanExpression` class to match a string against a boolean
+This typescript library provides a `BooleanExpression` class to match a string against a boolean
 expression containing words(strings). It supports both case-sensitive and
 case-insensitive matching. The library is implemented using the ANTLR4 tool.
 
