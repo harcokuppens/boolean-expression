@@ -26,7 +26,7 @@
   "scripts": {
     "generate": "./bin/antlr4 -no-listener -visitor -Dlanguage=TypeScript -Xexact-output-dir -o src/generated/ ./grammar/BooleanExpr.g4",
     "build": "npm run generate && tsc",
-    "lint": "tslint -c tslint.json src/**/*.ts",
+    "lint": "tslint -c tslint.json src/*.ts",
     "prepublishOnly": "npm run build",
     "clean": "rm -rf src/generated/ dist/ types/ ",
     "cleanall": "npm run clean && rm -rf  node_modules/",

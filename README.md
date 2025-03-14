@@ -24,14 +24,16 @@
          * [getWords(): string[]](#getwords-string)
          * [getWordsUsedInLastMatch(): string[]](#getwordsusedinlastmatch-string)
          * [logTokens()](#logtokens)
+   * [Developer instructions](#developer-instructions)
    * [License](#license)
 <!--te-->
 
 ## Description
 
-This typescript library provides a `BooleanExpression` class to match a string against a boolean
-expression containing words(strings). It supports both case-sensitive and
-case-insensitive matching. The library is implemented using the ANTLR4 tool.
+This typescript library provides a `BooleanExpression` class to match a string
+against a boolean expression containing words(strings). It supports both
+case-sensitive and case-insensitive matching. The library is implemented using the
+ANTLR4 tool.
 
 The idea is that you combine words with parentheses and the `NOT`, `AND` and `OR`
 operators to create a boolean expression. For example we could write:
@@ -249,6 +251,27 @@ positive match.
 #### `logTokens()`
 
 Logs tokens for debugging grammar.
+
+## Developer instructions
+
+To work on this repository you have to run the following commands:
+
+```bash
+git clone https://github.com/harcokuppens/boolean-expression.git
+cd boolean-expression
+npm install
+npm run build
+npm run test
+```
+
+This will clone the repository's code, installs its dependencies, builds the project,
+and finally runs the tests.
+
+To cleanup the repository you can run:
+
+```bash
+npm run cleanall
+```
 
 ## License
 

@@ -1,8 +1,8 @@
-import { CharStream, CommonTokenStream } from 'antlr4';
-import BooleanExprLexer from './generated/BooleanExprLexer.js';
-import BooleanExprParser, { ExprContext } from './generated/BooleanExprParser.js';
-import { EvalVisitor } from './EvalVisitor.js';
-import { WordsVisitor } from './WordsVisitor.js';
+import { CharStream, CommonTokenStream } from "antlr4";
+import BooleanExprLexer from "./generated/BooleanExprLexer.js";
+import BooleanExprParser, { ExprContext } from "./generated/BooleanExprParser.js";
+import { EvalVisitor } from "./EvalVisitor.js";
+import { WordsVisitor } from "./WordsVisitor.js";
 
 /**
  * Class representing a Boolean expression.
@@ -28,7 +28,7 @@ export default class BooleanExpression {
         this.tree = this.parser.expr();
         // Check for errors, and if so throw exception to be handled higher up
         if (this.parser.syntaxErrorsCount > 0) {
-            throw new SyntaxError('invalid boolean expression');
+            throw new SyntaxError("invalid boolean expression");
         }
         this.wordsUsedInMatch = [];
     }
@@ -37,7 +37,7 @@ export default class BooleanExpression {
      * Logs tokens for debugging grammar.
      */
     logTokens() {
-        let symbols: (string | null)[] = this.lexer.symbolicNames;
+        const symbols: (string | null)[] = this.lexer.symbolicNames;
         this.tokenStream.fill();
         this.tokenStream.tokens.forEach((token) => {
             const tokenName = symbols[token.type] || token.type;

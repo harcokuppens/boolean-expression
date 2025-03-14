@@ -1,7 +1,5 @@
-
-import BooleanExprVisitor from './generated/BooleanExprVisitor.js';
-import { AndExprContext, OrExprContext, ParenExprContext, StringExprContext, ImplicitAndExprContext, NotExprContext, EmptyExprContext } from './generated/BooleanExprParser.js';
-
+import BooleanExprVisitor from "./generated/BooleanExprVisitor.js";
+import { AndExprContext, OrExprContext, ParenExprContext, StringExprContext, ImplicitAndExprContext, NotExprContext, EmptyExprContext } from "./generated/BooleanExprParser.js";
 
 function matchWordInText(word: string, text: string, caseSensitive: boolean): boolean {
     let matchValue;
@@ -31,7 +29,7 @@ export class EvalVisitor extends BooleanExprVisitor<boolean> {
 
     visitAndExpr = (ctx: AndExprContext): boolean => {
         const left = this.visit(ctx.expr(0));
-        if (!left) return false;
+        if (!left) { return false; }
         const right = this.visit(ctx.expr(1));
         return left && right;
     }

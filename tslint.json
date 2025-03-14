@@ -1,0 +1,46 @@
+{
+  "extends": [
+    "tslint:recommended"
+  ],
+  "rules": {
+    "max-line-length": [
+      true,
+      200
+    ],
+    "indent": [
+      true,
+      "spaces",
+      2
+    ],
+    "quotemark": [
+      true,
+      "double"
+    ],
+    "semicolon": [
+      true,
+      "always"
+    ],
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "always",
+        "singleline": "never"
+      }
+    ],
+    "no-trailing-whitespace": true,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "member-access": [
+      true,
+      "no-public"
+    ],
+    "interface-name": [
+      true,
+      "never-prefix"
+    ],
+    "arrow-parens": [
+      true,
+      "ban-single-arg-parens"
+    ]
+  }
+}
