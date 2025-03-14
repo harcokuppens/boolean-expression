@@ -24,7 +24,7 @@
     "tests"
   ],
   "scripts": {
-    "generate": "./generate.bash",
+    "generate": "./bin/antlr4 -no-listener -visitor -Dlanguage=TypeScript -Xexact-output-dir -o src/generated/ ./grammar/BooleanExpr.g4",
     "build": "npm run generate && tsc",
     "lint": "tslint -c tslint.json src/**/*.ts",
     "prepublishOnly": "npm run build",

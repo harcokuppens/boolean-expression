@@ -1,0 +1,43 @@
+#!/bin/bash
+# run antlr4 tool : ANTLR Parser Generator ;  Generate parser and lexer  from a given grammar in a .g4  file
+# install by
+#  1. installing java
+#  2. downloading jar file from https://www.antlr.org/download/antlr-4.13.2-complete.jar
+# this script provides a wrapper to easily run antlr4 using java and the  https://www.antlr.org/download/antlr-4.13.2-complete.jar file
+#
+
+download_url="https://www.antlr.org/download/antlr-4.13.2-complete.jar"
+script_dir=$(dirname $0)
+antlr_jar="$script_dir/antlr4.jar"
+
+
+if [[ -n `which java` ]]
+then
+   echo "found java version:" 
+   java -version
+   echo ""
+else 
+   echo "ERROR: no java found on PATH. Required for running antlr4."
+   exit 1
+fi     
+
+
+if [[ ! -e "$antlr_jar" ]]
+then 
+    if [[ ! -n `which curl` ]]
+    then 
+       echo "ERROR: curl tool required for downloading antlr4."
+       exit 1
+    fi
+    echo "downloading jar for antlr4"
+    curl -o "$antlr_jar" "$download_url"
+fi
+
+java -cp "$antlr_jar:$CLASSPATH" org.antlr.v4.Tool "$@"
+if [[ "$?" == "0" ]]
+then
+    echo "succesfully run antlr4"
+else 
+    echo "ERROR in running antlr4"
+fi
+
