@@ -12,7 +12,7 @@
       * [Getting Words Used in the Last Match](#getting-words-used-in-the-last-match)
       * [Case-Sensitive Matching](#case-sensitive-matching)
       * [Static Match Method](#static-match-method)
-   * [Error Handling](#error-handling)
+      * [Error Handling](#error-handling)
    * [API for BooleanExpression class](#api-for-booleanexpression-class)
       * [Description](#description-1)
       * [Constructor](#constructor)
@@ -174,7 +174,7 @@ const result = BooleanExpression.match("hallo or boe", "boek"); // first arg is 
 console.log(result); // true
 ```
 
-## Error Handling
+### Error Handling
 
 If the boolean expression is invalid, a `SyntaxError` will be thrown.
 
