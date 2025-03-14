@@ -30,15 +30,19 @@
     "prepublishOnly": "npm run build",
     "clean": "rm -rf src/generated/ dist/ types/ ",
     "cleanall": "npm run clean && rm -rf  node_modules/",
-    "test": "npm run generate &&  node --loader ts-node/esm  tests/test.ts # no build needed!"
+    "test": "npx vitest --no-watch",
+    "testscript": "npm run generate &&  node --loader ts-node/esm  tests/test.ts # no build needed!"
   },
   "dependencies": {
     "antlr4": "^4.13.2"
   },
   "devDependencies": {
     "@types/node": "^22.13.10",
+    "@vitest/ui": "^3.0.8",
     "ts-node": "^10.9.2",
     "tslint": "^5.20.1",
-    "typescript": "^5.8.2"
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
   }
 }

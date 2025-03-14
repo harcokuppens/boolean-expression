@@ -3,8 +3,14 @@ import BooleanExprVisitor from './generated/BooleanExprVisitor.js';
 import { AndExprContext, OrExprContext, ParenExprContext, StringExprContext, ImplicitAndExprContext, NotExprContext, EmptyExprContext } from './generated/BooleanExprParser.js';
 
 
-function matchWordInTextCaseInsensitive(word: string, text: string): boolean {
-    return text?.toLowerCase().includes(word.toLowerCase()) ?? false;
+function matchWordInText(word: string, text: string, caseSensitive: boolean): boolean {
+    let matchValue;
+    if (caseSensitive) {
+        matchValue = text.includes(word);
+    } else {
+        matchValue = text.toLowerCase().includes(word.toLowerCase());
+    }
+    return matchValue;
 }
 
 export class EvalVisitor extends BooleanExprVisitor<boolean> {
@@ -12,12 +18,14 @@ export class EvalVisitor extends BooleanExprVisitor<boolean> {
         return false;
     }
 
+    private caseSensitive: boolean;
     private textToMatch: string;
     private stringValues: string[] = [];
 
-    constructor(textToMatch: string) {
+    constructor(textToMatch: string, caseSensitive: boolean) {
         super();
         this.textToMatch = textToMatch;
+        this.caseSensitive = caseSensitive;
     }
 
 
@@ -64,7 +72,7 @@ export class EvalVisitor extends BooleanExprVisitor<boolean> {
         // Remove surrounding quotes if present
         const unquotedStr = str.startsWith('"') && str.endsWith('"') ? str.slice(1, -1) : str;
         this.stringValues.push(unquotedStr);
-        return matchWordInTextCaseInsensitive(unquotedStr, this.textToMatch);
+        return matchWordInText(unquotedStr, this.textToMatch, this.caseSensitive);
     }
 
     visitEmptyExpr = (ctx: EmptyExprContext): boolean => {

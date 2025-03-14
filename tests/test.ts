@@ -1,6 +1,8 @@
 
 import BooleanExpression from '../src/BooleanExpression.js';
 
+//import BooleanExpression from '../dist/BooleanExpression.js';
+
 export function main() {
     const booleanExpr = "(kuppens AND vaAn) or aarts";
     const line = "paper by vaandrager adn harco kuppens ";
@@ -10,22 +12,12 @@ export function main() {
 
     boolexpr.logTokens();
 
-    //const foundMatch = matchBooleanExpr(tree, line)
+
     let foundMatch = boolexpr.match(line)
 
-    // const evalVisitor = new EvalVisitor(line);
-    // const foundMatch = evalVisitor.visit(tree);
-    // const values = evalVisitor.getStringValues();
 
     console.log("foundMatch: " + foundMatch.toString());
-    //console.log("words used in match: " + values.toString());
 
-
-    // const wordsVisitor = new WordsVisitor();
-    // wordsVisitor.visit(tree);
-    // const words = wordsVisitor.getStringValues();
-
-    //const words = getWordsInBooleanExpr(tree);
     const words = boolexpr.getWords();
     console.log("words in expression: " + words.toString());
     const wordsused = boolexpr.getWordsUsedInLastMatch();
@@ -40,10 +32,11 @@ export function main() {
     console.log("foundMatch: " + foundMatch.toString());
 
 
+    console.log("test whether an exception is thrown in case of invalid boolean expression");
     try {
         const wrongexpr = new BooleanExpression("boek or");
     } catch (exception) {
-        console.log("Error in boolean search term");
+        console.log("Catched exception: Error in boolean search term");
     }
 }
 
