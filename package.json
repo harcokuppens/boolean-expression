@@ -13,7 +13,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/harcokuppens/highlight-words"
+    "url": "https://github.com/harcokuppens/boolean-expression"
   },
   "main": "src/BooleanExpression.ts",
   "types": "types/BooleanExpression.d.ts",
