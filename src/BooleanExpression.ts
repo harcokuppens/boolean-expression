@@ -4,6 +4,9 @@ import BooleanExprParser, { ExprContext } from './generated/BooleanExprParser.js
 import { EvalVisitor } from './EvalVisitor.js';
 import { WordsVisitor } from './WordsVisitor.js';
 
+/**
+ * Class representing a Boolean expression.
+ */
 export default class BooleanExpression {
     private caseSensitive: boolean;
     private lexer: BooleanExprLexer;
@@ -12,6 +15,11 @@ export default class BooleanExpression {
     private tree: ExprContext;
     private wordsUsedInMatch: string[];
 
+    /**
+     * Creates an instance of BooleanExpression.
+     * @param booleanExpression - The boolean expression as a string.
+     * @param caseSensitive - Whether the expression is case sensitive.
+     */
     public constructor(booleanExpression: string, caseSensitive = false) {
         this.caseSensitive = caseSensitive;
         this.lexer = new BooleanExprLexer(new CharStream(booleanExpression));
@@ -25,7 +33,9 @@ export default class BooleanExpression {
         this.wordsUsedInMatch = [];
     }
 
-    // method to log tokens, for debugging grammar
+    /**
+     * Logs tokens for debugging grammar.
+     */
     logTokens() {
         let symbols: (string | null)[] = this.lexer.symbolicNames;
         this.tokenStream.fill();
@@ -35,14 +45,22 @@ export default class BooleanExpression {
         });
     }
 
-    // get words used in boolean search expression
+    /**
+     * Gets words used in the boolean search expression.
+     * @returns An array of words used in the expression.
+     */
     getWords(): string[] {
         const wordsVisitor = new WordsVisitor();
         wordsVisitor.visit(this.tree);
         return wordsVisitor.getStringValues();
     }
 
-    // check whether given text matches the boolean expression
+    /**
+     * Checks whether the given text matches the boolean expression.
+     * @param text - The text to match against the boolean expression.
+     * @param caseSensitive - Whether the match should be case sensitive.
+     * @returns True if the text matches the expression, false otherwise.
+     */
     match(text: string, caseSensitive: boolean | null = null): boolean {
         const usedCaseSensitive: boolean = caseSensitive !== null ? caseSensitive : this.caseSensitive;
         const evalVisitor = new EvalVisitor(text, usedCaseSensitive);
@@ -56,14 +74,23 @@ export default class BooleanExpression {
         return foundMatch;
     }
 
-    // get words visited in evaluation of boolean search expression to come to positive match
+    /**
+     * Gets words visited in the evaluation of the boolean search expression to come to a positive match.
+     * @returns An array of words used in the last match.
+     */
     getWordsUsedInLastMatch() {
         return this.wordsUsedInMatch;
     }
 
-    // directly match a boolean expression giving as string with a given text string
-    // which is convenient for a single match for the expression, 
-    // for multiple matches one better can create a BooleanExpression object.
+    /**
+     * Directly matches a boolean expression given as a string with a given text string.
+     * This is convenient for a single match for the expression. For multiple matches, 
+     * it is better to create a BooleanExpression object.
+     * @param booleanExpression - The boolean expression as a string.
+     * @param text - The text to match against the boolean expression.
+     * @param caseSensitive - Whether the match should be case sensitive.
+     * @returns True if the text matches the expression, false otherwise.
+     */
     static match(booleanExpression: string, text: string, caseSensitive: boolean | null = null): boolean {
         const usedCaseSensitive: boolean = caseSensitive !== null ? caseSensitive : false;
         return new BooleanExpression(booleanExpression).match(text, usedCaseSensitive);
