@@ -259,13 +259,23 @@ To work on this repository you have to run the following commands:
 ```bash
 git clone https://github.com/harcokuppens/boolean-expression.git
 cd boolean-expression
+vscode .
+```
+
+This opens the repository in Visual Studio Code which is preconfigured with a debug
+configuration.
+
+To just quickly build and test the project from the commandline without needing
+Visual Studio Code you can run in the project folder:
+
+```bash
 npm install
 npm run build
 npm run test
 ```
 
-This will clone the repository's code, installs its dependencies, builds the project,
-and finally runs the tests.
+This will installs the project's dependencies, builds the project, and finally runs
+the tests.
 
 To cleanup the repository you can run:
 
