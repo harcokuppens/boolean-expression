@@ -7,7 +7,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Run tsx",
+      "name": "Debug Library with tsx (compile on the fly to js with source maps for debugging)",
       "runtimeExecutable": "npx",
       "runtimeArgs": ["tsx", "tests/test.ts"],
       "cwd": "${workspaceFolder}"
@@ -17,7 +17,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug Library",
+      "name": "Debug Library with tsc",
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/tests/test.ts",
       "preLaunchTask": "tsc: build - tsconfig.json",
