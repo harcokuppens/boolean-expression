@@ -7,25 +7,45 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug main.ts with Vite-Node to run with nodejs",
-      // "program": "npx vite-node src/main.ts"
+      "name": "Run tsx",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["vite-node", "src/main.ts"]
-      // "console": "integratedTerminal",
-      //"internalConsoleOptions": "neverOpen",
-      //   "skipFiles": ["<node_internals>/**"],
-      //    "preLaunchTask": "generate ANTLR4 code"
+      "runtimeArgs": ["tsx", "tests/test.ts"],
+      "cwd": "${workspaceFolder}"
+      //   "args": []
     },
+
     {
-      "type": "msedge",
+      "type": "node",
       "request": "launch",
-      "name": "Launch Vite",
-      "url": "http://localhost:5173",
-      "webRoot": "${workspaceFolder}/src",
-      "preLaunchTask": "generate ANTLR4 code & npm: dev",
-      //"preLaunchTask": "vite dev server",
-      // note: we do not need to run 'tsc' because vite itself does the compiling!!
+      "name": "Debug Library",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/tests/test.ts",
+      "preLaunchTask": "tsc: build - tsconfig.json",
       "outFiles": ["${workspaceFolder}/dist/**/*.js"]
     }
+
+    // {
+    //   "type": "node",
+    //   "request": "launch",
+    //   "name": "Debug main.ts with Vite-Node to run with nodejs",
+    //   // "program": "npx vite-node src/main.ts"
+    //   "runtimeExecutable": "npx",
+    //   "runtimeArgs": ["vite-node", "src/main.ts"]
+    //   // "console": "integratedTerminal",
+    //   //"internalConsoleOptions": "neverOpen",
+    //   //   "skipFiles": ["<node_internals>/**"],
+    //   //    "preLaunchTask": "generate ANTLR4 code"
+    // },
+    // {
+    //   "type": "msedge",
+    //   "request": "launch",
+    //   "name": "Launch Vite",
+    //   "url": "http://localhost:5173",
+    //   "webRoot": "${workspaceFolder}/src",
+    //   "preLaunchTask": "generate ANTLR4 code & npm: dev",
+    //   //"preLaunchTask": "vite dev server",
+    //   // note: we do not need to run 'tsc' because vite itself does the compiling!!
+    //   "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+    // }
   ]
 }

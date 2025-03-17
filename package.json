@@ -25,13 +25,13 @@
   ],
   "scripts": {
     "generate": "./bin/antlr4 -no-listener -visitor -Dlanguage=TypeScript -Xexact-output-dir -o src/generated/ ./grammar/BooleanExpr.g4",
-    "build": "npm run generate && tsc",
+    "build": "tsc",
     "lint": "tslint -c tslint.json src/*.ts",
     "prepublishOnly": "npm run build",
-    "clean": "rm -rf src/generated/ dist/ types/ ",
-    "cleanall": "npm run clean && rm -rf  node_modules/",
+    "clean": "rm -rf dist/ types/ ",
+    "cleanall": "npm run clean ; rm -rf  node_modules/",
     "test": "npx vitest --no-watch",
-    "testscript": "npm run generate &&  npx tsx tests/test.ts # no build needed!"
+    "testscript": "npx tsx tests/test.ts # no build needed!"
   },
   "dependencies": {
     "antlr4": "^4.13.2"

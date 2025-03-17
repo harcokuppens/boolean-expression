@@ -1,13 +1,42 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "lib": ["esnext"],
+  // compile src/ folder and tests/test.ts for debugging into dist/ folder
+  "include": ["src/**/*", "tests/test.ts"],
 
-    "rootDir": "src",
+  "compilerOptions": {
+    // target modern javascript and module system, and use node.js modules
+    "target": "es2022",
+    "module": "es2022",
+    "moduleResolution": "node",
+    //"lib": ["esnext"],
+    // we need moduleResolution set to node otherwise we cannot find antlr4 in node_modules/ folder
+    // // next 2 lines give a problem with antlr4 declaration files which do not have explicit file extensions on imports
+    // // so therefore we switch to older "moduleResolution": "node"
+    // "module": "nodenext",
+    // "moduleResolution": "nodenext",
+    // note: "module": "nodenext" requires "moduleResolution": "nodenext" and visa versa
+
+    // root of all sources is project folder (so no need to look further up the three for sources)
+    // "rootDir": ".",
+    // https://www.typescriptlang.org/tsconfig/#rootDir says
+    //   Default: Computed from the list of input files.
+    // which in our case is project's folder containing both tests/ and src/ folder.
+    // So above rootdir option does not need to be added because default is already OK.
+
+    // compile to javascript in the dist folder
     "outDir": "dist",
 
+    // create source maps for debugging (in the dist folder)
+    "sourceMap": true,
+    // inline source in map file
+    "inlineSources": true,
+
+    // add declaration files and map files to their ts source in the dist folder in the types folder
+    "declarationDir": "./types/", // vscode cannot find it there! => must be in dist
+    "declaration": true, // create .d.ts file for each .ts source file
+    "declarationMap": true, // create .d.ts.map file for each .ts source file which maps declaration in .d.ts to .ts file
+    // "emitDeclarationOnly": true, // for vite projects where tsc is only used to create .d.ts and .d.ts.map files
+
+    // more options
     "strict": true,
     "alwaysStrict": true,
     "strictFunctionTypes": true,
@@ -25,11 +54,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "downlevelIteration": true,
-    "declaration": true,
-    "declarationDir": "./types/",
-    "declarationMap": true,
 
     "pretty": true
-  },
-  "include": ["typings/**/*", "src/**/*"]
+  }
 }
