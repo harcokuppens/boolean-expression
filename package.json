@@ -16,7 +16,7 @@
     "url": "https://github.com/harcokuppens/boolean-expression"
   },
   "main": "src/BooleanExpression.ts",
-  "types": "types/BooleanExpression.d.ts",
+  "types": "types/src/BooleanExpression.d.ts",
   "files": [
     "dist",
     "types",
@@ -25,12 +25,15 @@
   ],
   "scripts": {
     "generate": "./bin/antlr4 -no-listener -visitor -Dlanguage=TypeScript -Xexact-output-dir -o src/generated/ ./grammar/BooleanExpr.g4",
+    "prebuild": "npm install",
     "build": "tsc",
     "lint": "tslint -c tslint.json src/*.ts",
     "prepublishOnly": "npm run build",
     "clean": "rm -rf dist/ types/ ",
     "cleanall": "npm run clean ; rm -rf  node_modules/",
+    "pretest": "npm install",
     "test": "npx vitest --no-watch",
+    "pretestscript": "npm install",
     "testscript": "npx tsx tests/test.ts # no build needed!"
   },
   "dependencies": {
