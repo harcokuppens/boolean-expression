@@ -1,6 +1,7 @@
 {
   "name": "@harcokuppens/boolean-expression",
   "type": "module",
+  "private": false,
   "version": "1.0.0",
   "description": "match a string using a boolean expression of words",
   "keywords": [
