@@ -71,8 +71,8 @@ expr:  NOT expr       # NotExpr
     ;
 ```
 
-this indicates that if you do not specify an operator than implicitly the `AND`
-operator is used.
+This grammar also indicates that as a convenience that when you omit an operator between words, 
+then implicitly the 'AND' operator is assumed.
 
 We also allow freedom in expressing the operators `AND`,`OR` and `NOT`. The ANTLR4
 grammar's lexer rules are:
@@ -81,10 +81,20 @@ grammar's lexer rules are:
 AND:  'AND' | '&&' | '&' ;
 OR: 'OR'  | '||' | '|';
 NOT: 'NOT' | '!' ;
+STRING: '"' (~["\r\n])* '"' | ~[ \t\r\n()!|&]+ ;
 ```
 
 The strings 'AND', 'OR' and 'NOT' are also interpreted case insensitive. So you could
 also write `and` instead of `AND`!
+
+Note that the STRING lexer rules specifies that none-quoted words in the booleanexpression may not contain the characters
+'|','&' and '!'. But if you quote the word then these characters are allowed. This
+means that for example '!journal' is read as 'NOT journal'.
+
+Finally when we have an invalid boolean expression, eg. 'John AND', then a "Syntax Error" exception is thrown by the 
+library to allow users of the boolean-expression library to handle this exception at the code level they want.
+
+
 
 ## Installation
 
