@@ -87,14 +87,12 @@ STRING: '"' (~["\r\n])* '"' | ~[ \t\r\n()!|&]+ ;
 The strings 'AND', 'OR' and 'NOT' are also interpreted case insensitive. So you could
 also write `and` instead of `AND`!
 
-Note that the STRING lexer rules specifies that none-quoted words in the booleanexpression may not contain the characters
+Note that the STRING lexer rule specifies that none-quoted words in the boolean expression may not contain the characters
 '|','&' and '!'. But if you quote the word then these characters are allowed. This
 means that for example '!journal' is read as 'NOT journal'.
 
 Finally when we have an invalid boolean expression, eg. 'John AND', then a "Syntax Error" exception is thrown by the 
 library to allow users of the boolean-expression library to handle this exception at the code level they want.
-
-
 
 ## Installation
 
