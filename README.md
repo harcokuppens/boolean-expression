@@ -58,6 +58,7 @@ Above boolean expression will give for the following strings:
 
 ```
 
+
 The ANTLR4 grammar uses looks like:
 
 ```bash
@@ -71,20 +72,48 @@ expr:  NOT expr       # NotExpr
     ;
 ```
 
-this indicates that if you do not specify an operator than implicitly the `AND`
-operator is used.
+This grammar also indicates that as a convenience that when you omit an operator between words, 
+then implicitly the 'AND' operator is assumed.
 
-We also allow freedom in expressing the operators `AND`,`OR` and `NOT`. The ANTLR4
+We also allow freedom in expressing the operators `AND`, `OR`, and `NOT`. The ANTLR4
 grammar's lexer rules are:
 
 ```bash
 AND:  'AND' | '&&' | '&' ;
 OR: 'OR'  | '||' | '|';
 NOT: 'NOT' | '!' ;
+STRING: '"' (~["\r\n])* '"' | ~[ \t\r\n()!|&]+ ;
 ```
 
-The strings 'AND', 'OR' and 'NOT' are also interpreted case insensitive. So you could
+The strings 'AND', 'OR', and 'NOT' are also interpreted case insensitive. So you could
 also write `and` instead of `AND`!
+
+The boolean expression library allows the boolean operators 'AND', 'OR' and 'NOT' to be used case insensitive and
+and the lexer rules above also provides us with alternative words for the operators:
+
+```
+    operator  |    allowed syntax
+  -----------------------------------
+     AND      |  'AND', '&&', or '&'
+     OR       |  'OR', '||', or '|'
+     NOT      |  'NOT', or '!'
+```
+
+Meaning we can write the boolean expression in above example also as:
+
+```
+   (fakename & fakecity ) | someone
+```
+
+The STRING lexer rule specifies that none-quoted words in the boolean expression may not contain the characters
+'|','&' and '!'. But if you quote the word then these characters are allowed. This
+means that for example '!journal' is read as 'NOT journal'.
+
+Finally when we have an invalid boolean expression, eg. 'John AND', then a "Syntax Error" exception is thrown by the 
+library to allow users of the boolean-expression library to handle this exception at the code level they want.
+
+
+
 
 ## Installation
 
