@@ -13,8 +13,8 @@
   "author": "Harco Kuppens",
   "license": "MIT",
   "scripts": {
-    "setup": "npm install; cp ../dist/tests/test.js src/main.js; sed -i 's|../src/BooleanExpression.js|@harcokuppens/boolean-expression|' src/main.js",
-    "start": "node src/main.js",
+    "// -- setup": "cp ../dist/tests/test.js src/main.js; sed -i 's|../src/BooleanExpression.js|@harcokuppens/boolean-expression|' src/main.js",
+    "start": "npm install && node src/main.js",
     "clean": "rm -rf dist/ types/ ",
     "cleanall": "npm run clean ; rm -rf  node_modules/"
   },
