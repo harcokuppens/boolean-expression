@@ -1,7 +1,6 @@
 {
   // compile src/ folder and tests/test.ts for debugging into dist/ folder
   "include": ["src/**/*", "tests/test.ts"],
-
   "compilerOptions": {
     // target modern javascript and module system, and use node.js modules
     "target": "es2022",
@@ -42,6 +41,11 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
+
+    // "allowImportingTsExtensions": true,
+    // https://www.typescriptlang.org/tsconfig/#allowImportingTsExtensions
+    // This flag is only allowed when --noEmit or --emitDeclarationOnly is enabled,
+    // since these import paths would not be resolvable at runtime in JavaScript output files. 
 
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,

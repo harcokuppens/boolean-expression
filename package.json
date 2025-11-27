@@ -2,7 +2,7 @@
   "name": "@harcokuppens/boolean-expression",
   "type": "module",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "match a string using a boolean expression of words",
   "keywords": [
     "boolean",
@@ -16,8 +16,14 @@
     "type": "git",
     "url": "https://github.com/harcokuppens/boolean-expression"
   },
-  "main": "src/BooleanExpression.ts",
-  "types": "types/src/BooleanExpression.d.ts",
+  "// LEGACY - main": "dist/src/BooleanExpression.js",
+  "// LEGACY - types": "types/src/BooleanExpression.d.ts",
+  "exports": {
+    ".": {
+       "types": "./types/src/BooleanExpression.d.ts", 
+       "import": "./dist/src/BooleanExpression.js"
+    }
+  },  
   "files": [
     "dist",
     "types",
@@ -28,6 +34,7 @@
     "generate": "./bin/antlr4 -no-listener -visitor -Dlanguage=TypeScript -Xexact-output-dir -o src/generated/ ./grammar/BooleanExpr.g4",
     "prebuild": "npm install",
     "build": "tsc",
+    "// commment build": "use tsc, because tsx does not output files",
     "lint": "tslint -c tslint.json src/*.ts",
     "prepublishOnly": "npm run build",
     "clean": "rm -rf dist/ types/ ",
@@ -45,7 +52,7 @@
     "@vitest/ui": "^3.0.8",
     "tslint": "^5.20.1",
     "tsx": "^4.19.3",
-    "typescript": "^5.8.2",
+    "typescript": "^5.9.3",
     "vitest": "^3.0.8"
   }
 }
