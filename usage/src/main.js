@@ -1,12 +1,5 @@
-//// below is supported by 'npm run testscript' which 
-//// runs 'npx tsx tests/test.ts' using tsx which support .ts imports
-//// however 'npm build' which runs 'tsc' does not support .ts imports
-//// when building .js files from them. see https://www.typescriptlang.org/tsconfig/#allowImportingTsExtensions
-// The tsc is designed not to alter module specifiers (the import paths) to preserve compatibility with 
-// the JavaScript module system and maintain its role primarily as a transpiler and type checker, 
-// not a full-fledged bundler or resolver.
-//import BooleanExpression from '../src/BooleanExpression.ts';
 import BooleanExpression from '@harcokuppens/boolean-expression';
+
 export function main() {
     const line = "paper by makeup adn john fakename ";
     const booleanExpr = "(fakename AND aKeup) or someone";
@@ -34,4 +27,3 @@ export function main() {
     }
 }
 main();
-//# sourceMappingURL=test.js.map
